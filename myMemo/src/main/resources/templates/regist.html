@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href ="@{/css/reset.css}" rel="stylesheet">
+<link th:href ="@{/css/bootstrap.min.css}" rel="stylesheet">
+<title>My Memo</title>
+</head>
+<body>
+    <h1 class="text-center" style="margin-top: 100px; font-size: 80px;"><a href="../" style="text-decoration: none;color: inherit;">My Memo</a></h1>
+    <div class="container mt-5">
+        <form action="userRegist" method="post" class="form w-50 mx-auto needs-validation" style="margin-top: 200px;" novalidate>
+            <div class="mb-3 row">
+                <label for="inputEmail" class="form-label col-md-2 col-form-label">メールアドレス</label>
+                <div class="col-md-10 ">
+                    <input type="email" name="userMail" class="form-control" id="inputEmail" placeholder="メールアドレスを入力" required>
+                    <div class="invalid-feedback">メールアドレスを入力してください。</div>
+
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputName" class="form-label col-lg-2 col-form-label">ユーザー名</label>
+                <div class="col-lg-10 ">
+                    <input type="text" name="userName" class="form-control" id="inputName" placeholder="ユーザー名を入力" required>
+                    <div class="invalid-feedback">ユーザー名を入力してください。</div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputPassword" class="form-label col-lg-2 col-form-label">パスワード</label>
+                <div class="col-lg-10">
+                    <input type="password" name="userPassword" class="form-control" id="inputPassword" placeholder="パスワードを入力" required>
+                    <div class="invalid-feedback">パスワードを入力してください。</div>
+
+                </div>
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <button type="submit" class="btn btn-warning w-25" name="regist">登録</button>
+            </div>
+        </form>
+    </div>
+
+<script src="js/bootstrap.bundle.min.js"></script>  
+<script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        let forms = document.getElementsByClassName('needs-validation');
+        let validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+</body>
+</html>

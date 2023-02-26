@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href ="@{/css/reset.css}" rel="stylesheet">
+<link th:href ="@{/css/bootstrap.min.css}" rel="stylesheet">
+<title>My Memo</title>
+</head>
+<body>
+    <h1 class="text-center" style="margin-top: 100px; font-size: 80px;"><a href="../../" style="text-decoration: none;color: inherit;">My Memo</a></h1>
+    <h5 class="text-center" style="margin-top: 200px;"><span th:text = "${userForm.userName}"></span>さん、新規登録は成功しました。</h5>
+    <div class="d-flex justify-content-center mt-5">
+     <a type="button" class="btn btn-outline-primary w-25" href="../">Top page へ</a>
+    </div>
+           
+<script src="js/bootstrap.bundle.min.js"></script>  
+</body>
+</html>

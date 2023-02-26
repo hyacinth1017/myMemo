@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href ="@{/css/reset.css}" rel="stylesheet">
+<link th:href ="@{/css/bootstrap.min.css}" rel="stylesheet">
+<title>My Memo</title>
+</head>
+<body>
+    <h1 class="text-center my-5" style="font-size: 50px;">My Memo</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+          <div class="container">
+            <a class="navbar-brand" href="#">My Memo</a>
+            <div class="navbar-text">ようこそ、<span th:text = "${user.userName}"></span> さん。</div>
+            <ul class="navbar-nav justify-content-end flex-grow-1">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">ログアウト</a>
+              </li>
+            </ul>
+            <!-- <form>
+              <input class="form-control me-2" type="search" placeholder="検索したい内容" aria-label="Search">
+              <button class="btn btn-outline-light text-nowrap disabled" type="submit">検索</button>
+            </form> -->
+          </div>
+    </nav>
+    <!-- ここからはMemoを投稿するFormです -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mt-5 border border-dark rounded-3 mx-auto">
+          <form action="postMemo" method="post" class="needs-validation p-3" novalidate  th:object = "${user}">
+            <div class="mb-3">
+              <label class="form-label" for="memoTitle">Memoを記入...</label>
+              <input type="hidden" name="userId" th:field = "${user.userId}"   >
+              <input type="hidden" name="userName" th:field = "${user.userName}"   >
+              <input type="text" name="memoTitle" class="form-control" id="memoTitle" placeholder="タイトルを入力" required>
+              <div class="invalid-feedback">タイトルを入力してください。</div>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" name="memoText" rows="4" placeholder="テキストを入力" required></textarea>
+              <div class="invalid-feedback">テキストを入力して下さい。</div>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">提出</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- ここからは投稿したMemoリストです -->
+    <div class="container" style="margin-bottom: 200px;">
+      <div class="row">
+        <div class="col-lg-8 mt-5 border border-dark rounded-3 mx-auto">
+          <p class="m-3 text-center fw-bold">My Memo List</p>
+          <div th:each = "memo : ${memoList}" style="margin-bottom: 30px;" class="m-3 p-3 border-bottom">
+            <div class="d-lg-flex justify-content-between">
+              <h5 th:text = "${memo.memoTitle}"></h5>
+              <small>最後更新時間：<span th:text = "${memo.memoTime}"></span></small>
+            </div>
+            <p th:text ="${memo.memoText}"></p>
+            <div class="d-flex justify-content-end">
+              <a type="button" class="btn btn-sm btn-secondary me-2" th:href="@{/login/{userId}/update/{memoId}(userId = ${user.userId},memoId = ${memo.memoId})}" >変更</button>              
+              <a type="hidden" name="userId" th:value = "${user.userId}"> 
+              <a type="button" class="btn btn-sm btn-warning" th:href="@{/login/{userId}/delete/{memoId}(userId = ${user.userId},memoId = ${memo.memoId})}" >削除</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-light" style="text-align: center; padding: 15px 0 4px;position: relative;bottom: 0; width: 100%;">
+      <p>Copyright ©2023 MyMemo</p>
+    </footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script>
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      let forms = document.getElementsByClassName('needs-validation');
+      let validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href ="@{/css/reset.css}" rel="stylesheet">
+<link th:href ="@{/css/bootstrap.min.css}" rel="stylesheet">
+<title>My Memo</title>
+</head>
+<body>
+    <h1 class="text-center" style="margin-top: 100px; font-size: 80px;">My Memo</h1>
+    <h5 class="text-center" style="margin-top: 200px;"><span th:text = "${user.userName}"></span>さん、ログインは成功しました。</h5>
+    <div class="container mt-5">
+        <!-- <form action="/login/{userId}(userId = ${user.userId})" method="post" class="form w-50 mx-auto" > -->
+            <div class="mb-3 row justify-content-center">
+                <a type="button" class="btn btn-primary w-25" th:href="@{/login/{userId}(userId = ${user.userId})}">My Pageへ</a>
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <a type="button" class="btn btn-secondary w-25" href="../">ログアウト</a>
+            </div>
+        <!-- </form> -->
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>  
+</body>
+</html>
